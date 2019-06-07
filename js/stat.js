@@ -9,7 +9,6 @@ var BAR_WIDTH = 40;
 var BAR_GAP = 50;
 var barStart = (CLOUD_Y * 2) + BAR_WIDTH;
 var maxBarHeight = (CLOUD_HEIGHT - (FONT_GAP * 2) - (TEXT_HEIGHT * 3) - (GAP * 3)) * -1;
-var playerResult = barStart - ((maxBarHeight * -1) + (GAP + TEXT_HEIGHT));
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
@@ -41,6 +40,9 @@ window.renderStatistics = function (ctx, players, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < players.length; i++) {
+    var heightBar = (maxBarHeight * times[i]) / maxTime;
+    var playerResult = barStart - ((heightBar * -1) + (GAP + TEXT_HEIGHT));
+
     ctx.fillText(Math.round(times[i]), CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), playerResult);
 
     if (i === 0) {
@@ -48,52 +50,12 @@ window.renderStatistics = function (ctx, players, times) {
     } else if (i === 1) {
       ctx.fillStyle = 'rgba(0, 0, 255, 1)';
     } else {
-      ctx.fillStyle = 'rgba(0, 0, 255, 0.7)';
+      ctx.fillStyle = 'rgba(0, 0, 255,'+(i+1)/10+')';
     }
 
-    ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), barStart, BAR_WIDTH, (maxBarHeight * times[i]) / maxTime);
+    ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), barStart, BAR_WIDTH, heightBar);
 
     ctx.fillStyle = 'rgba(0, 0, 0, 1)';
     ctx.fillText(players[i], CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
   };
-
-
-  // Катя
-
-  // var playerIndex = 1;
-  // var playerName = 'Катя';
-
-  // ctx.fillText('2735', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), playerResult);
-
-  // ctx.fillStyle = 'rgba(0, 0, 255, 1)';
-  // ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), barStart, BAR_WIDTH, barHeight);
-
-  // ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-  // ctx.fillText(playerName, CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
-
-  // // Женя
-
-  //  var playerIndex = 2;
-  //  var playerName = 'Женя';
-
-  // ctx.fillText('2745', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), playerResult);
-
-  // ctx.fillStyle = 'rgba(0, 0, 255, 0.5)';
-  // ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), barStart, BAR_WIDTH, barHeight);
-
-  // ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-  // ctx.fillText(playerName, CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
-
-  // // Полина
-
-  //  var playerIndex = 3;
-  //  var playerName = 'Полина';
-
-  // ctx.fillText('2755', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), playerResult);
-
-  // ctx.fillStyle = 'rgba(0, 0, 255, 0.75)';
-  // ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), barStart, BAR_WIDTH, barHeight);
-
-  // ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-  // ctx.fillText(playerName, CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
 };

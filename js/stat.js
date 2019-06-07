@@ -16,7 +16,7 @@ var renderCloud = function (ctx, x, y, color) {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-window.renderStatistics = function (ctx) {
+window.renderStatistics = function (ctx, players) {
   renderCloud(ctx, CLOUD_X + GAP, GAP * 2, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, GAP, 'rgba(255, 255, 255, 1)');
 
@@ -29,14 +29,21 @@ window.renderStatistics = function (ctx) {
   // var playerIndex = 0;
   // var playerName = 'Вы';
 
-  var players = ['Вы', 'Катя', 'Женя', 'Полина'];
+  // var players = ['Вы', 'Катя', 'Женя', 'Полина'];
 
   // Я
 
   for (var i = 0; i < players.length; i++) {
     ctx.fillText('2725', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), playerResult);
 
-    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    if (i === 0) {
+      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    } else if (i === 1) {
+      ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+    } else {
+      ctx.fillStyle = 'rgba(0, 0, 255, 0.7)';
+    }
+
     ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), barStart, BAR_WIDTH, barHeight);
 
     ctx.fillStyle = 'rgba(0, 0, 0, 1)';

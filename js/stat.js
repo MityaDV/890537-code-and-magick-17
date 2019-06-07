@@ -8,15 +8,27 @@ var TEXT_HEIGHT = 10;
 var BAR_WIDTH = 40;
 var BAR_GAP = 50;
 var barStart = (CLOUD_Y * 2) + BAR_WIDTH;
-var barHeight = (CLOUD_HEIGHT - (FONT_GAP * 2) - (TEXT_HEIGHT * 3) - (GAP * 3)) * -1;
-var playerResult = barStart - ((barHeight * -1) + (GAP + TEXT_HEIGHT));
+var maxBarHeight = (CLOUD_HEIGHT - (FONT_GAP * 2) - (TEXT_HEIGHT * 3) - (GAP * 3)) * -1;
+var playerResult = barStart - ((maxBarHeight * -1) + (GAP + TEXT_HEIGHT));
 
 var renderCloud = function (ctx, x, y, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
-window.renderStatistics = function (ctx, players) {
+var getMaxElement = function (arr) {
+  var maxElement = arr[0];
+
+  for (var i = 1; i < arr.length; i++) {
+    if (arr[i] > maxElement) {
+      maxElement = arr[i];
+    }
+  }
+
+  return maxElement;
+};
+
+window.renderStatistics = function (ctx, players, times) {
   renderCloud(ctx, CLOUD_X + GAP, GAP * 2, 'rgba(0, 0, 0, 0.7)');
   renderCloud(ctx, CLOUD_X, GAP, 'rgba(255, 255, 255, 1)');
 
@@ -26,15 +38,10 @@ window.renderStatistics = function (ctx, players) {
   ctx.fillText('Ура вы победили!', CLOUD_X + (GAP * 2), FONT_GAP);
   ctx.fillText('Список результатов:', CLOUD_X + (GAP * 2), FONT_GAP + GAP + TEXT_HEIGHT);
 
-  // var playerIndex = 0;
-  // var playerName = 'Вы';
-
-  // var players = ['Вы', 'Катя', 'Женя', 'Полина'];
-
-  // Я
+  var maxTime = getMaxElement(times);
 
   for (var i = 0; i < players.length; i++) {
-    ctx.fillText('2725', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), playerResult);
+    ctx.fillText(Math.round(times[i]), CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), playerResult);
 
     if (i === 0) {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
@@ -44,7 +51,7 @@ window.renderStatistics = function (ctx, players) {
       ctx.fillStyle = 'rgba(0, 0, 255, 0.7)';
     }
 
-    ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), barStart, BAR_WIDTH, barHeight);
+    ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), barStart, BAR_WIDTH, (maxBarHeight * times[i]) / maxTime);
 
     ctx.fillStyle = 'rgba(0, 0, 0, 1)';
     ctx.fillText(players[i], CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);

@@ -50,7 +50,7 @@ window.renderStatistics = function (ctx, players, times) {
     } else if (i === 1) {
       ctx.fillStyle = 'rgba(0, 0, 255, 1)';
     } else {
-      ctx.fillStyle = 'rgba(0, 0, 255,'+(i+1)/10+')';
+      ctx.fillStyle = 'rgba(0, 0, 255,' + (i + 1) / 10+')';
     }
 
     ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), barStart, BAR_WIDTH, heightBar);

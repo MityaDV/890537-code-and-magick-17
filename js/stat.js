@@ -26,57 +26,60 @@ window.renderStatistics = function (ctx) {
   ctx.fillText('Ура вы победили!', CLOUD_X + (GAP * 2), FONT_GAP);
   ctx.fillText('Список результатов:', CLOUD_X + (GAP * 2), FONT_GAP + GAP + TEXT_HEIGHT);
 
-  var playerIndex = 0;
-  var playerName = 'Вы';
+  // var playerIndex = 0;
+  // var playerName = 'Вы';
 
   var players = ['Вы', 'Катя', 'Женя', 'Полина'];
 
   // Я
 
-  ctx.fillText('2725', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), playerResult);
+  for (var i = 0; i < players.length; i++) {
+    ctx.fillText('2725', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), playerResult);
 
-  ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-  ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), barStart, BAR_WIDTH, barHeight);
+    ctx.fillStyle = 'rgba(255, 0, 0, 1)';
+    ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), barStart, BAR_WIDTH, barHeight);
 
-  ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-  ctx.fillText(playerName, CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
+    ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+    ctx.fillText(players[i], CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
+  };
+
 
   // Катя
 
-  var playerIndex = 1;
-  var playerName = 'Катя';
+  // var playerIndex = 1;
+  // var playerName = 'Катя';
 
-  ctx.fillText('2735', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), playerResult);
+  // ctx.fillText('2735', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), playerResult);
 
-  ctx.fillStyle = 'rgba(0, 0, 255, 1)';
-  ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), barStart, BAR_WIDTH, barHeight);
+  // ctx.fillStyle = 'rgba(0, 0, 255, 1)';
+  // ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), barStart, BAR_WIDTH, barHeight);
 
-  ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-  ctx.fillText(playerName, CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
+  // ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+  // ctx.fillText(playerName, CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
 
-  // Женя
+  // // Женя
 
-   var playerIndex = 2;
-   var playerName = 'Женя';
+  //  var playerIndex = 2;
+  //  var playerName = 'Женя';
 
-  ctx.fillText('2745', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), playerResult);
+  // ctx.fillText('2745', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), playerResult);
 
-  ctx.fillStyle = 'rgba(0, 0, 255, 0.5)';
-  ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), barStart, BAR_WIDTH, barHeight);
+  // ctx.fillStyle = 'rgba(0, 0, 255, 0.5)';
+  // ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), barStart, BAR_WIDTH, barHeight);
 
-  ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-  ctx.fillText(playerName, CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
+  // ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+  // ctx.fillText(playerName, CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
 
-  // Полина
+  // // Полина
 
-   var playerIndex = 3;
-   var playerName = 'Полина';
+  //  var playerIndex = 3;
+  //  var playerName = 'Полина';
 
-  ctx.fillText('2755', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), playerResult);
+  // ctx.fillText('2755', CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), playerResult);
 
-  ctx.fillStyle = 'rgba(0, 0, 255, 0.75)';
-  ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), barStart, BAR_WIDTH, barHeight);
+  // ctx.fillStyle = 'rgba(0, 0, 255, 0.75)';
+  // ctx.fillRect(CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), barStart, BAR_WIDTH, barHeight);
 
-  ctx.fillStyle = 'rgba(0, 0, 0, 1)';
-  ctx.fillText(playerName, CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
+  // ctx.fillStyle = 'rgba(0, 0, 0, 1)';
+  // ctx.fillText(playerName, CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * playerIndex), (CLOUD_Y * 2) + FONT_GAP + GAP + TEXT_HEIGHT);
 };

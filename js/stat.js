@@ -47,7 +47,7 @@ window.renderStatistics = function (ctx, players, times) {
 
     ctx.fillText(Math.round(times[i]), CLOUD_X + BAR_WIDTH + ((BAR_WIDTH + BAR_GAP) * i), playerResult);
 
-    if (i === 0) {
+    if (players[i] === 'Вы') {
       ctx.fillStyle = 'rgba(255, 0, 0, 1)';
     } else if (i === 1) {
       ctx.fillStyle = 'rgba(0, 0, 255, 1)';

@@ -1,3 +1,4 @@
+/* eslint-disable no-redeclare */
 'use strict';
 
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон']; // массив имён
@@ -15,39 +16,21 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template') /
 .querySelector('.setup-similar-item');
 
 // массив объектов с именами магов и цветами мантий и глаз
-var wizards = [
-  {
-    name: WIZARD_NAMES[0],
-    coatColor: 'rgb(241, 43, 107)',
-    eyesColor: 'black'
-  },
-  {
-    name: WIZARD_NAMES[1],
-    coatColor: 'rgb(215, 210, 55)',
-    eyesColor: 'red'
-  },
-  {
-    name: WIZARD_NAMES[2],
-    coatColor: 'rgb(101, 137, 164)',
-    eyesColor: 'blue'
-  },
-  {
-    name: WIZARD_NAMES[3],
-    coatColor: 'rgb(127, 127, 127)',
-    eyesColor: 'yellow'
-  }
-];
+var wizards = [];
 
-// Функция изменения свойств объектов
-var generateObjects = function (name, surname, coat, eyes, wizard) {
-  for (var i = 0; i < wizard.length; i++) {
-    wizard[i].name = name[Math.floor(Math.random() * name.length)] + ' ' + surname[Math.floor(Math.random() * surname.length)];
-    wizard[i].coatColor = coat[Math.floor(Math.random() * coat.length)];
-    wizard[i].eyesColor = eyes[Math.floor(Math.random() * eyes.length)];
-  }
+// Функция генерации объектов
+
+var generateObjects = function (names, surname, coat, eyes) {
+  return {
+    name: names[Math.floor(Math.random() * names.length)] + ' ' + surname[Math.floor(Math.random() * surname.length)],
+    coatColor: coat[Math.floor(Math.random() * coat.length)],
+    eyesColor: eyes[Math.floor(Math.random() * eyes.length)]
+  };
 };
-
-generateObjects(WIZARD_NAMES, WIZARD_SURNAMES, WIZARD_COATS, WIZARD_EYES, wizards);
+// Добавляем четыре объекта
+for (var i = 0; i < 4; i++) {
+  wizards[i] = generateObjects(WIZARD_NAMES, WIZARD_SURNAMES, WIZARD_COATS, WIZARD_EYES);
+}
 
 // функция создания магов
 var renderWizard = function (wizard) {

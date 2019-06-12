@@ -7,7 +7,7 @@ var WIZARD_COATS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 16
 var WIZARD_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_COUNT = 4;
 
-var randomValue = function (array) { // Функция генерации случайного значения из переданного массива
+var randomValueFromArray = function (array) { // Функция генерации случайного значения из переданного массива
   return array[Math.floor(Math.random() * array.length)];
 };
 
@@ -24,9 +24,9 @@ var wizards = []; // массив объектов с именами, цвета
 
 var generateWizardObject = function () { // Функция генерации объектов
   return {
-    name: randomValue(WIZARD_NAMES) + ' ' + randomValue(WIZARD_SURNAMES),
-    coatColor: randomValue(WIZARD_COATS),
-    eyesColor: randomValue(WIZARD_EYES)
+    name: randomValueFromArray(WIZARD_NAMES) + ' ' + randomValueFromArray(WIZARD_SURNAMES),
+    coatColor: randomValueFromArray(WIZARD_COATS),
+    eyesColor: randomValueFromArray(WIZARD_EYES)
   };
 };
 

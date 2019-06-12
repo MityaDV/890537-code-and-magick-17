@@ -55,7 +55,7 @@ var renderWizard = function (wizard) {
 
   wizardElement.querySelector('.setup-similar-label').textContent = wizard.name; // находим в клонах шаблона текст имен и заменяем их
   wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor; // меняем цвет плащей
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor; // меняем цвет плащей
+  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor; // меняем цвет глаз
 
   return wizardElement; // возвращаем изменённого мага
 };

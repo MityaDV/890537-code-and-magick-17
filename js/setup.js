@@ -1,4 +1,3 @@
-
 'use strict';
 
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
@@ -6,19 +5,58 @@ var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', '�
 var WIZARD_COATS = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES = ['black', 'red', 'blue', 'yellow', 'green'];
 var WIZARDS_COUNT = 4;
+var ESC_KEYCODE = 27;
+var ENTER_KEYCODE = 13;
+
+var setupOpen = document.querySelector('.setup-open'); // ноходим окно с аватаркой
+var userDialog = document.querySelector('.setup'); // находим окно настроек пользователя
+var setupClose = userDialog.querySelector('.setup-close'); // находим кнопку закрытия
+var similarListElement = document.querySelector('.setup-similar-list'); // находим блок куда будем копировать магов
+var similarWizardTemplate = document.querySelector('#similar-wizard-template') // находим шаблон который будем копировать
+  .content
+  .querySelector('.setup-similar-item');
+
+var onPopupEscPress = function (evt) { // вынесли и назвали обработчик события нажатия клавиши ESC для удобства его добавления и удаления
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+var openPopup = function () { // вынесли в отдельную ф-ю логику открытия окна
+  userDialog.classList.remove('hidden');
+
+  document.addEventListener('keydown', onPopupEscPress); // добавили обработчик события 'keydown' для закрытия окна по нажатию ESC
+};
+
+var closePopup = function () { // вынесли в отдельную ф-ю логику закрытия окна
+  userDialog.classList.add('hidden');
+
+  document.removeEventListener('keydown', onPopupEscPress); // удалили обработчик события 'keydown' для закрытия окна по нажатию ESC
+};
+
+setupOpen.addEventListener('click', function () { // добавили обработчик события 'click' на аватарку
+  openPopup();
+});
+
+setupOpen.addEventListener('keydown', function (evt) { // добавили обработчик события 'keydown' на аватарку если она в фокусе и нажат ENTER
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+setupClose.addEventListener('click', function () { // добавили обработчик события 'click' на кнопку закрытия
+  closePopup();
+});
+
+setupClose.addEventListener('keydown', function (evt) { // добавили обработчик события 'keydown' на кнопку закрытия если она в фокусе и нажат ENTER
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
 
 var randomValueFromArray = function (array) { // Функция генерации случайного значения из переданного массива
   return array[Math.floor(Math.random() * array.length)];
 };
-
-var userDialog = document.querySelector('.setup'); // находим окно настроек пользователя
-userDialog.classList.remove('hidden'); // показываем окно настроек пользователя
-
-var similarListElement = document.querySelector('.setup-similar-list'); // находим блок куда будем копировать магов
-
-var similarWizardTemplate = document.querySelector('#similar-wizard-template') // находим шаблон который будем копировать
-.content
-.querySelector('.setup-similar-item');
 
 var wizards = []; // массив объектов с именами, цветами мантий, глаз магов
 

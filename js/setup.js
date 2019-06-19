@@ -22,23 +22,23 @@ var setupWizardApperance = document.querySelector('.setup-wizard-appearance'); /
 var setupWizardCoat = document.querySelector('.setup-wizard .wizard-coat'); // элемент плаща
 var setupWizardEyes = document.querySelector('.setup-wizard .wizard-eyes'); // элемент глаз
 var setupFireball = document.querySelector('.setup-fireball-wrap'); // блок фаерболла
+var coatWizard = setupWizardApperance.querySelectorAll('[type="hidden"]')[0]; // нахожу 1-е скрытое поле
+var eyesWizard = setupWizardApperance.querySelectorAll('[type="hidden"]')[1]; // нахожу 2-е скрытое поле
+var fireballWizard = setupFireball.querySelector('[type="hidden"]'); // нахожу скрытое поле фаербола
 
 setupWizardCoat.addEventListener('click', function (evt) { // обработчик изменения цвета плаща
-  var coat = setupWizardApperance.querySelectorAll('[type="hidden"]')[0]; // нахожу скрытое поле
   evt.target.style.fill = randomValueFromArray(WIZARD_COATS); // меняю цвет
-  coat.value = evt.target.style.fill; // заменяю данные для отправки на сервер
+  coatWizard.value = evt.target.style.fill; // заменяю данные для отправки на сервер
 });
 
 setupWizardEyes.addEventListener('click', function (evt) { // обработчик изменения цвета глаз
-  var eyes = setupWizardApperance.querySelectorAll('[type="hidden"]')[1];
   evt.target.style.fill = randomValueFromArray(WIZARD_EYES);
-  eyes.value = evt.target.style.fill;
+  eyesWizard.value = evt.target.style.fill;
 });
 
 setupFireball.addEventListener('click', function (evt) { // обработчик изменения цвета фаербола
-  var fireball = setupFireball.querySelector('[type="hidden"]');
-  fireball.value = randomValueFromArray(WIZARD_FIREBALLS);
-  evt.currentTarget.style.background = fireball.value;
+  fireballWizard.value = randomValueFromArray(WIZARD_FIREBALLS);
+  evt.currentTarget.style.background = fireballWizard.value;
 });
 
 var onPopupEscPress = function (evt) { // вынесли и назвали обработчик события нажатия клавиши ESC для удобства его добавления и удаления

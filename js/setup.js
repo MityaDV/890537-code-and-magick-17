@@ -51,12 +51,15 @@ var openPopup = function () { // вынесли в отдельную ф-ю ло
   userDialog.classList.remove('hidden');
 
   document.addEventListener('keydown', onPopupEscPress); // добавили обработчик события 'keydown' для закрытия окна по нажатию ESC
+  defineСoordsElem(userDialog);
 };
 
 var closePopup = function () { // вынесли в отдельную ф-ю логику закрытия окна
   userDialog.classList.add('hidden');
 
   document.removeEventListener('keydown', onPopupEscPress); // удалили обработчик события 'keydown' для закрытия окна по нажатию ESC
+  userDialog.style.top = window.cords.y;
+  userDialog.style.left = window.cords.x;
 };
 
 setupOpen.addEventListener('click', function () { // добавили обработчик события 'click' на аватарку
@@ -123,3 +126,12 @@ for (var j = 0; j < wizards.length; j++) {
 similarListElement.appendChild(fragment); // добавляем в блок для вставки подготовленный фрагмент
 
 userDialog.querySelector('.setup-similar').classList.remove('hidden'); // показываем блок с похожими персонажами
+
+// module5-task1
+
+var defineСoordsElem = function (elem) { // функция получения координат элемента
+  window.cords = {
+    x: elem.offsetLeft + 'px',
+    y: elem.offsetTop + 'px'
+  };
+};

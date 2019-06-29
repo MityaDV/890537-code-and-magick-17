@@ -3,19 +3,61 @@
 
   var setupDialogElement = document.querySelector('.setup'); // нахожу окно настроек
   var dialogHandler = setupDialogElement.querySelector('.upload'); // нахожу аватарку
-  var setupArtifactShop = setupDialogElement.querySelector('.setup-artifacts-shop');
-  var setupArtifactBox = setupDialogElement.querySelector('.setup-artifacts');
-  var boxCell = setupArtifactBox.querySelectorAll('.setup-artifacts-cell');
 
   // Код перетаскивания предметов
 
-  var onMouseDownArtifact = function (downEvt) { // вешаю обработчик на контейнер с элементами
-    var shopElem = downEvt.target.closest('img'); // сохраняю ближайший элемент от текущего
+  var draggedArtifact; // создал переменную для хранения перемещаемого элемента
 
-    boxCell[0].appendChild(shopElem);
+  var onDrag = function () { // ф-я обр-ка перетаскиваемого элемента
   };
 
-  setupArtifactShop.addEventListener('mousedown', onMouseDownArtifact);
+  var onDragStart = function (evt) { // ф-я обр-ка начала перетаскивания
+    evt.target.style.opacity = '0.5'; // добавил прозрачности элементу
+
+    draggedArtifact = evt.target; // сохранил элемент в переменную
+  };
+
+  var onDragEnd = function (evt) { // ф-я обр-ка конца перетаскивания
+    evt.target.style.opacity = ''; // сбросил прозрачность перетаскиемого элемента
+  };
+
+  var onDragOver = function (evt) { // ф-я обр-ка если элемент находится над своим контейнером
+    evt.preventDefault();
+  };
+
+  var onDragEnter = function (evt) { // ф-я обр-ка если элемент находится над целевым контейнером
+    if (evt.target.className === 'setup-artifacts-cell') {
+      evt.target.style.border = '1px solid yellow'; // добавил border
+    }
+  };
+
+  var onDragLeave = function (evt) { // ф-я обр-ка если элемент убран с целевого контейнера
+    if (evt.target.className === 'setup-artifacts-cell') {
+      evt.target.style.border = ''; // убрал border
+    }
+  };
+
+  var onDrop = function (evt) { // ф-я обр-ка если элемент находиться над действительным целевым контейнером
+    evt.preventDefault();
+
+    if (evt.target.className === 'setup-artifacts-cell') {
+      evt.target.style.border = '';
+      draggedArtifact.parentNode.removeChild(draggedArtifact); // удалил элемент из родителя
+      evt.target.appendChild(draggedArtifact); // вставил в текущий контейнер
+    }
+  };
+
+  var shopCell = setupDialogElement.querySelectorAll('.setup-artifacts-cell'); // нашел все ячейки
+  [].forEach.call(shopCell, function (cell) { // передаю методу forEach(принимает функцию как вход) массив с ячейками, call принимает первым аргументом shopCell и подставляет его вместо пустого массива, после выполняется function которую передал в forEach и он выполнит её один раз для каждого элемента из массива
+    cell.addEventListener('drag', onDrag, false); // навешиваю обработчики
+    cell.addEventListener('dragstart', onDragStart, false);
+    cell.addEventListener('dragend', onDragEnd, false);
+    cell.addEventListener('dragover', onDragOver, false);
+    cell.addEventListener('dragenter', onDragEnter, false);
+    cell.addEventListener('dragleave', onDragLeave, false);
+    cell.addEventListener('drop', onDrop, false);
+  });
+
 
   // Код перетаскивания окна
 

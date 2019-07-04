@@ -1,4 +1,5 @@
 'use strict';
+
 (function () {
 
   var setupDialogElement = document.querySelector('.setup'); // нахожу окно настроек
@@ -57,7 +58,6 @@
     cell.addEventListener('dragleave', onDragLeave, false);
     cell.addEventListener('drop', onDrop, false);
   });
-
 
   // Код перетаскивания окна
 

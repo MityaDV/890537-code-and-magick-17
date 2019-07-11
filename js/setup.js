@@ -100,7 +100,7 @@
 
   form.addEventListener('submit', function (evt) {
 
-    window.backendSave(new FormData(form), function (_response) { // вызов при отправке данных
+    window.backend.save(new FormData(form), function (_response) { // вызов при отправке данных
 
       userDialog.classList.add('hidden');
     }, onErrorLoad);
@@ -108,6 +108,6 @@
     evt.preventDefault();
   });
 
-  window.backendLoad(onSuccessLoad, onErrorLoad); // вызов для получения данных
+  window.backend.load(onSuccessLoad, onErrorLoad); // вызов для получения данных
 
 })();
